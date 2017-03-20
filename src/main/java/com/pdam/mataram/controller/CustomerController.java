@@ -61,12 +61,13 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public Callable<Boolean> delete(@PathVariable("id") String id) {
-        return new Callable<Boolean>() {
+    public Callable<String[]> delete(@PathVariable("id") String id) {
+        return new Callable<String[]>() {
             @Override
-            public Boolean call() throws Exception {
+            public String[] call() throws Exception {
                 customerRepo.delete(customerRepo.findOne(id));
-                return true;
+                String[] status = {"true"};
+                return status;
             }
         };
     }
